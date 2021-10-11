@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import * as CSS from 'utils/styleSheetHelpers';
 
 const GlobalStyle = createGlobalStyle`
   html,

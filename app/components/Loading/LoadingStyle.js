@@ -11,7 +11,7 @@ const rotate = keyframes`
 `;
 
 const LoadingStyle = styled.div`
-.loadingWrapper {
+  .loadingWrapper {
     position: fixed;
     z-index: 999;
     top: 0;

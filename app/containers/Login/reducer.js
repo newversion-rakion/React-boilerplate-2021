@@ -4,7 +4,6 @@
  *
  */
 import produce from 'immer';
-import * as _ from 'lodash';
 import {
   DEFAULT_ACTION,
   LOGIN_PENDING,

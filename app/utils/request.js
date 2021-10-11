@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { store } from 'react-notifications-component';
 import { ROOT_URI, API_TIMEOUT } from './constants';
 
 const instance = axios.create({
@@ -7,7 +6,7 @@ const instance = axios.create({
   timeout: API_TIMEOUT,
 });
 
-const sendRequest = ({ url, method, params, data, apiName = '' }) =>
+const sendRequest = ({ url, method, params, data }) =>
   instance({
     url,
     method,
@@ -19,44 +18,27 @@ const sendRequest = ({ url, method, params, data, apiName = '' }) =>
   })
     .then(response => {
       if (!response.data.error || response.data.error === 0) {
-        return handleSuccess(response, apiName);
+        return handleSuccess(response);
       }
-      return handleError(response, apiName);
+      return handleError(response);
     })
-    .catch(error => handleError(error, apiName));
+    .catch(error => handleError(error));
 
-export const get = ({ url, params, apiName }) =>
-  sendRequest({ url, params, method: 'GET', apiName });
+export const get = ({ url, params }) =>
+  sendRequest({ url, params, method: 'GET' });
 
-export const post = ({ url, params, data, apiName }) =>
-  sendRequest({ url, params, data, method: 'POST', apiName });
+export const post = ({ url, params, data }) =>
+  sendRequest({ url, params, data, method: 'POST' });
 
-export const put = ({ url, params, data, apiName }) =>
-  sendRequest({ url, params, data, method: 'PUT', apiName });
+export const put = ({ url, params, data }) =>
+  sendRequest({ url, params, data, method: 'PUT' });
 
-export const deleteData = ({ url, params, data, apiName }) =>
-  sendRequest({ url, params, data, method: 'DELETE', apiName });
+export const deleteData = ({ url, params, data }) =>
+  sendRequest({ url, params, data, method: 'DELETE' });
 
-const handleSuccess = (respond, apiName) => {
-  if (apiName && process.env.NODE_ENV === 'development') {
-    const message = `${apiName} is succeed`;
+const handleSuccess = respond => Promise.resolve(respond);
 
-    store.addNotification({
-      message,
-      type: 'success',
-      insert: 'top',
-      container: 'top-right',
-      animationIn: ['animate__animated', 'animate__fadeIn'],
-      animationOut: ['animate__animated', 'animate__fadeOut'],
-      dismiss: {
-        duration: 2000,
-      },
-    });
-  }
-  return Promise.resolve(respond);
-};
-
-const handleError = (error, apiName) => {
+const handleError = error => {
   if (error.response) {
     return Promise.reject(
       error && error.response && error.response.data.result,

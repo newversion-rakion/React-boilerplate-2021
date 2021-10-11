@@ -6,11 +6,11 @@ import { LOGIN_PENDING } from './constants';
 export function* login(action) {
   const { data } = action;
   const payload = {
-    url: '/User/Login',
+    url: '/Login',
     params: null,
     data,
-    apiName: 'login',
   };
+
   try {
     const respond = yield call(Api.post, payload);
     yield put(loginSuccess(respond));
