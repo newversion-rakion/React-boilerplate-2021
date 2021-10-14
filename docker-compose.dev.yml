@@ -4,8 +4,8 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     volumes:
       - ./app:/app/app
     ports:
-      - "3001:80"
+      - "3001:3001"
