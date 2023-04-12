@@ -1,7 +1,14 @@
 import { useRef, useEffect } from 'react';
+import moment from 'moment';
+import _ from 'lodash';
 import queryString from 'query-string';
 import history from 'utils/history';
 import { useLocation } from 'react-router-dom';
+
+export const handleLogout = router => {
+  localStorage.clear();
+  history.push(router);
+};
 
 export const openExternalLink = link => {
   if (link.includes('http')) {
@@ -61,15 +68,14 @@ export const logout = () => {
   history.push('/login');
 };
 
-export const renderUiByRole = conditionRoles => {
+export const detechCurrentUserRole = conditionRoles => {
   let result = false;
-  const currentRoles = JSON.parse(localStorage.getItem('user_roles'));
-  currentRoles.map(role => {
-    conditionRoles.map(conditionRole => {
-      if (role.toString() === conditionRole.toString()) {
-        result = true;
-      }
-    });
+  const userInfo = JSON.parse(localStorage.getItem('user_info'));
+  const { role = '' } = userInfo;
+  conditionRoles.map(conditionRole => {
+    if (role.toString() === conditionRole.toString()) {
+      result = true;
+    }
   });
   return result;
 };
@@ -78,6 +84,36 @@ export const toLocaleString = number => {
   if (number) {
     const cloneNumber = +number;
     return cloneNumber.toLocaleString();
+  }
+  return '';
+};
+
+export const stringGen = len => {
+  let text = '';
+
+  const charset =
+    'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < len; i++)
+    text += charset.charAt(Math.floor(Math.random() * charset.length));
+
+  return text;
+};
+
+export const uniqueAlerts = data => {
+  if (data.length > 0) {
+    return _.uniqBy(data, 'alert_type');
+  }
+  return [];
+};
+
+export const convertDateTime = (dateTime, format) => {
+  if (dateTime) {
+    return moment
+      .parseZone(dateTime)
+      .utc(true)
+      .format(format);
   }
   return '';
 };

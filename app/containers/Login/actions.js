@@ -3,6 +3,8 @@
  * Login actions
  *
  */
+import history from 'utils/history';
+import { ROUTER_INDEX } from 'utils/constants';
 import {
   DEFAULT_ACTION,
   LOGIN_PENDING,
@@ -24,8 +26,9 @@ export function login(data) {
 }
 
 export function loginSuccess(respond) {
-  localStorage.setItem('user_info', JSON.stringify(respond.data.User));
-  localStorage.setItem('token', `Bearer ${respond.data.Token}`);
+  localStorage.setItem('user_info', JSON.stringify(respond.data));
+
+  history.push(ROUTER_INDEX);
 
   return {
     type: LOGIN_SUCCESS,

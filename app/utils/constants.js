@@ -6,3 +6,6 @@ export const DAEMON = '@@saga-injector/daemon';
 export const ONCE_TILL_UNMOUNT = '@@saga-injector/once-till-unmount';
 
 export const ROUTER_LOGIN = '/login';
+
+export const ROUTER_ADMIN = '/in';
+export const ROUTER_INDEX = `${ROUTER_ADMIN}/index`;

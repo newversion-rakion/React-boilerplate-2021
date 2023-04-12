@@ -1,6 +1,6 @@
 /**
  *
- * Tests for Logo
+ * Tests for IndexPage
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,12 +10,13 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import Logo from '../index';
+import { IndexPage } from '../index';
 
-describe('<Logo />', () => {
+describe('<IndexPage />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<Logo />);
+    const dispatch = jest.fn();
+    render(<IndexPage dispatch={dispatch} />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +32,7 @@ describe('<Logo />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<Logo />);
+    } = render(<IndexPage />);
     expect(firstChild).toMatchSnapshot();
   });
 });

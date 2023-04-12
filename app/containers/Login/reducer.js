@@ -13,6 +13,7 @@ import {
 
 export const initialState = {
   loginData: {},
+  errorText: undefined,
   loading: false,
 };
 
@@ -23,7 +24,7 @@ const loginReducer = (state = initialState, action) =>
       case DEFAULT_ACTION:
         break;
       case LOGIN_PENDING:
-        return { ...state, loginErrorText: '', loading: true };
+        return { ...state, errorText: undefined, loading: true };
       case LOGIN_SUCCESS:
         return {
           ...state,
@@ -33,6 +34,7 @@ const loginReducer = (state = initialState, action) =>
       case LOGIN_ERROR:
         return {
           ...state,
+          errorText: action.error && action.error[0],
           loading: false,
         };
     }

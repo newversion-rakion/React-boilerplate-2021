@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 const RouterInterceptor = ({ component: Component, ...rest }) => {
-  const isAuthenticated = localStorage.getItem('token');
+  const isAuthenticated = localStorage.getItem('access-token');
   return (
     <Route
       {...rest}

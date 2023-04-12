@@ -13,9 +13,10 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import RouterInterceptor from 'utils/routerInterceptor';
 
-import MainLayout from 'layouts/MainLayout';
 import AdminLayout from 'layouts/AdminLayout';
 import ScrolToTop from 'components/ScrollToTop';
+
+import { ROUTER_LOGIN } from 'utils/constants';
 
 import Login from 'containers/Login/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -30,18 +31,14 @@ export default function App() {
   useInjectSaga({ key: 'global', saga });
   return (
     <div>
-      <Helmet
-        titleTemplate="React Boilerplate"
-        defaultTitle="React Boilerplate"
-      >
-        <meta name="description" content="React Boilerplate" />
+      <Helmet titleTemplate="Test" defaultTitle="Test">
+        <meta name="description" content="Test" />
       </Helmet>
       <ScrolToTop />
       <Switch>
         <Route path="/" exact component={Login} />
-        <Route path="/login" exact component={Login} />
-        <RouterInterceptor path="/in" component={MainLayout} />
-        <RouterInterceptor path="/admin" component={AdminLayout} />
+        <Route path={ROUTER_LOGIN} exact component={Login} />
+        <RouterInterceptor path="/in" component={AdminLayout} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
