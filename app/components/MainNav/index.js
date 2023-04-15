@@ -1,8 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-
+import List from '@material-ui/core/List';
 import { ROUTER_INDEX } from 'utils/constants';
+import { staticMenu } from '../../static/Menus';
+import ListItemLinkContainer from '../ListItemLinkContainer';
 
 import MainNavStyle from './MainNavStyle';
 
@@ -34,6 +36,16 @@ const MainNav = ({ hideMenu, showLessMenu, handleShowLessMenu }) => (
           />
         </button>
       </div>
+      <div className="sidebar-divider" />
+      <nav>
+        <List>
+          {staticMenu.map((menu, index) => (
+            <React.Fragment key={index}>
+              <ListItemLinkContainer menuObj={menu} />
+            </React.Fragment>
+          ))}
+        </List>
+      </nav>
     </div>
   </MainNavStyle>
 );
