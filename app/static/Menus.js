@@ -1,46 +1,51 @@
 import React from 'react';
-import { Settings, DesktopMac, Store, AccountBox } from '@material-ui/icons';
-import { GeneralSetup } from '../pages/GeneralSetup';
+import {
+  DesktopMac,
+  Store,
+  AccountBox,
+  SupervisorAccount,
+} from '@material-ui/icons';
 import { Mypage } from '../pages/Mypage';
 import { AdminSetupPage } from '../pages/AdminSetupPage';
 import { DepartmentSetupPage } from '../pages/DepartmentSetupPage';
-import { SubDepartmentSetupPage } from '../pages/SubDepartmentSetupPage';
+import { CustomPaginationActionsTable } from '../pages/ManagerAccount';
+import { AddRule } from '../pages/AddRule';
 import { DeviceSetupPage } from '../pages/DeviceSetupPage';
 
 export const staticMenu = [
   {
     id: 1,
-    menuName: 'General Setup',
+    menuName: 'Quản lý tài khoản',
     menuDescription: 'General setups menus',
-    path: '/generalSetup',
-    component: GeneralSetup,
+    path: '/accountManager',
+    component: CustomPaginationActionsTable,
     exact: true,
-    icon: <Settings />,
+    icon: <SupervisorAccount />,
     submenu: [
       {
         id: 3,
-        menuName: 'Admin Setup',
-        menuDescription: 'To Setup admins',
-        path: '/generalSetup/adminSetup',
-        component: AdminSetupPage,
+        menuName: 'Phân quyền',
+        menuDescription: 'Add rule',
+        path: '/accountManager/addRule',
+        component: AddRule,
         icon: <AccountBox />,
       },
-      {
-        id: 4,
-        menuName: 'Department Setup',
-        menuDescription: 'To Setup departments',
-        path: '/generalSetup/department',
-        component: DepartmentSetupPage,
-        icon: <AccountBox />,
-      },
-      {
-        id: 5,
-        menuName: 'Sub Department Setup',
-        menuDescription: 'To Setup sub departments',
-        path: '/generalSetup/sub-department',
-        component: SubDepartmentSetupPage,
-        icon: <AccountBox />,
-      },
+      // {
+      //   id: 4,
+      //   menuName: 'Department Setup',
+      //   menuDescription: 'To Setup departments',
+      //   path: '/generalSetup/department',
+      //   component: DepartmentSetupPage,
+      //   icon: <AccountBox />,
+      // },
+      // {
+      //   id: 5,
+      //   menuName: 'Sub Department Setup',
+      //   menuDescription: 'To Setup sub departments',
+      //   path: '/generalSetup/sub-department',
+      //   component: SubDepartmentSetupPage,
+      //   icon: <AccountBox />,
+      // },
     ],
   },
   {
