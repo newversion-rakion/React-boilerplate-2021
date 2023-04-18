@@ -23,7 +23,9 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-
+import axios from 'axios'; // Sử dụng axios
+import { toast } from 'react-toastify';
+import { apiUrl, getToken } from '../static/api';
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -141,13 +143,43 @@ export const CustomPaginationActionsTable = () => {
 
   const fetchData = async () => {
     // https://api-dev.vsseapp.vn/api/user/list?page=1&pageSize=10
-    const res = await fetch(
-      `https://api-dev.vsseapp.vn/api/user/list?page=${page}&pageSize=${rowsPerPage}`,
-    );
-    const json = await res.json();
-    setData(json.data);
-    setTableData(json.data);
+    // const res = await fetch(
+    //   `https://api-dev.vsseapp.vn/api/user/list?page=${page}&pageSize=${rowsPerPage}`,
+    // );
+    // const json = await res.json();
+    // setData(json.data);
+    // setTableData(json.data);
     // setTotalRows(json.totalRows);
+    axios.get('https://api-dev.vsseapp.vn/api/claim', {
+      headers: {
+        common: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50IjpbIkxpc3QiLCJDcmVhdGUiLCJVcGRhdGUiLCJEZWxldGUiXSwiUm9sZSI6WyJMaXN0IiwiQ3JlYXRlIiwiVXBkYXRlIiwiRGVsZXRlIl0sImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiZDU3MDY2NTQtNDIzYS00ZjZmLWFjYzMtMzI5ZmJmOTAxZDZkIiwiZXhwIjoxNjgxODg0NDY4LCJpc3MiOiJJbnZlbnRvcnlBdXRoZW50aWNhdGlvblNlcnZlciIsImF1ZCI6IkludmV0b3J5U2VydmljZVBvc3RtYW5DMWllbnQifQ.kyiqG1UhDgmmAb9O2lQEEg_BFHNw3JYFBSKfFsvmUMg',
+        },
+      },
+    });
+
+    axios
+      .get(`${apiUrl}/user/list?page=${page}&pageSize=${rowsPerPage}`, {
+        headers: {
+          common: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        },
+      })
+      .then(response => {
+        setData(response.data);
+        setTableData(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+
+        toast.error(err, {
+          // Set to 15sec
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+        });
+      });
   };
   console.log(tableData);
 
