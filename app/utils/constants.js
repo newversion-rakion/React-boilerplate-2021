@@ -1,4 +1,4 @@
-export const ROOT_URI = '';
+export const { ROOT_URI } = process.env;
 
 export const API_TIMEOUT = '15000';
 export const RESTART_ON_REMOUNT = '@@saga-injector/restart-on-remount';
