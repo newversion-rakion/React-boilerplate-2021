@@ -16,9 +16,11 @@ import RouterInterceptor from 'utils/routerInterceptor';
 import AdminLayout from 'layouts/AdminLayout';
 import ScrolToTop from 'components/ScrollToTop';
 
-import { ROUTER_LOGIN, ROOT_URI } from 'utils/constants';
+import { ROUTER_LOGIN, ROUTER_HOME, ROOT_URI } from 'utils/constants';
 
 import Login from 'containers/Login/Loadable';
+import Home from 'containers/Home';
+
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
@@ -29,7 +31,7 @@ import saga from './saga';
 export default function App() {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
-console.log('ROOT_URI: ', ROOT_URI);
+  console.log('ROOT_URI: ', ROOT_URI);
 
   return (
     <div>
@@ -37,8 +39,10 @@ console.log('ROOT_URI: ', ROOT_URI);
         <meta name="description" content="Test" />
       </Helmet>
       <ScrolToTop />
+
       <Switch>
         <Route path="/" exact component={Login} />
+        <Route path={ROUTER_HOME} exact component={Home} />
         <Route path={ROUTER_LOGIN} exact component={Login} />
         <RouterInterceptor path="/in" component={AdminLayout} />
         <Route path="" component={NotFoundPage} />
