@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   html,
   body {
-    font-family: 'M PLUS 1p', 'Nunito', Arial, sans-serif;
+    font-family: 'Roboto', 'M PLUS 1p', 'Nunito', Arial, sans-serif;
     font-size: 1rem;
     height: 100%;
     width: 100%;

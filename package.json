@@ -76,6 +76,8 @@
     "@mui/styled-engine-sc": "^5.0.0",
     "@mui/styles": "^5.0.1",
     "axios": "^0.21.1",
+    "bootstrap": "^5.3.3",
+    "boxicons": "^2.1.4",
     "chalk": "^2.4.2",
     "chart.js": "^3.6.0",
     "classnames": "^2.2.6",
@@ -103,10 +105,12 @@
     "react-intl": "^2.8.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
+    "react-slick": "^0.30.2",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "4.2.0"
   },
   "devDependencies": {

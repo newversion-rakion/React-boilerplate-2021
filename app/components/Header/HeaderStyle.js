@@ -15,7 +15,7 @@ const HeaderStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padidng: 0 1rem 0 0;
+    padding: 0 1rem 0 0;
   }
   .mainHeaderRight {
     display: flex;

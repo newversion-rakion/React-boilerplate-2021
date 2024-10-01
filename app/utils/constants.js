@@ -9,3 +9,5 @@ export const ROUTER_LOGIN = '/login';
 
 export const ROUTER_ADMIN = '/in';
 export const ROUTER_INDEX = `${ROUTER_ADMIN}/index`;
+
+export const ROUTER_HOME = '/home';
